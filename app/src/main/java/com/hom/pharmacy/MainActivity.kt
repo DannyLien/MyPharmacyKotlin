@@ -3,6 +3,7 @@ package com.hom.pharmacy
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -15,6 +16,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hom.pharmacy.databinding.ActivityMainBinding
 
@@ -64,6 +66,8 @@ class MainActivity : AppCompatActivity() {
         spCity = binding.spCity
         spTown = binding.spTown
         recy = binding.recyclerPharm
+        recy.setHasFixedSize(true)
+        recy.layoutManager = GridLayoutManager(this, 1)
     }
 
     var currentCity = ""
@@ -82,7 +86,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
         }
     }
@@ -99,11 +102,24 @@ class MainActivity : AppCompatActivity() {
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 currentTown = spTown.selectedItem.toString()
-//                setRecyPharm()
+                setRecyPharm()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
+            }
+        }
+    }
+
+    private fun setRecyPharm() {
+//        Log.d(TAG, "setRecyPharm: mask-setRecyPharm- $currentCity && $currentTown")
+        pharmInfo?.also { pharm ->
+            val filterData = pharm.features.filter {
+                it.properties.county == currentCity &&
+                        it.properties.town == currentTown
+            }
+            if (!filterData.isNullOrEmpty()) {
+//                Log.d(TAG, "setRecyPharm: mask-setRecyPharm- $filterData")
+                recy.adapter = PharmacyAdapter(this, filterData)
             }
         }
     }

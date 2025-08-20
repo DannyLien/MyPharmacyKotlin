@@ -37,9 +37,9 @@ class PharmacyViewModel : ViewModel() {
     }
 
     fun vmUpDataCity() {
-        pharmInfo.also { pharm ->
-            val data = pharm?.features?.groupBy { it.properties.county }
-            data?.forEach {
+        pharmInfo?.also { pharm ->
+            val data = pharm.features.groupBy { it.properties.county }
+            data.forEach {
                 allCity.add(it.key)
             }
         }
@@ -47,10 +47,10 @@ class PharmacyViewModel : ViewModel() {
     }
 
     fun vmUpDataTown(currentCity: String) {
-        pharmInfo.also { pharm ->
-            val data = pharm?.features?.filter { it.properties.county == currentCity }
+        pharmInfo?.also { pharm ->
+            val data = pharm.features.filter { it.properties.county == currentCity }
             allTown.clear()
-            data?.forEach {
+            data.forEach {
                 allTown.add(it.properties.town)
             }
             allTown = allTown.distinct().toMutableList()
