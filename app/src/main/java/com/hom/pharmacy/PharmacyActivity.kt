@@ -1,9 +1,9 @@
 package com.hom.pharmacy
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,6 +11,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.hom.pharmacy.databinding.ActivityPharmacyBinding
 
 class PharmacyActivity : AppCompatActivity() {
+    private var filterData: Feature? = null
+    private lateinit var pharmAddress: TextView
+    private lateinit var pharmPhone: TextView
+    private lateinit var pharmChild: TextView
+    private lateinit var pharmAdult: TextView
+    private lateinit var pharmName: TextView
     private lateinit var binding: ActivityPharmacyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +30,26 @@ class PharmacyActivity : AppCompatActivity() {
             insets
         }
 
+        filterData = PharmacyViewModel.PharmInfoData.pharmFilterData
+
+        findViews()
+
+    }
+
+    private fun findViews() {
+        pharmName = binding.pharmName
+        pharmAdult = binding.pharmAdult
+        pharmChild = binding.pharmChild
+        pharmPhone = binding.pharmPhone
+        pharmAddress = binding.pharmAddress
+
+        filterData?.also {
+            pharmName.setText(it.properties.name)
+            pharmAdult.setText(it.properties.mask_adult.toString())
+            pharmChild.setText(it.properties.mask_child.toString())
+            pharmPhone.setText(it.properties.phone)
+            pharmAddress.setText(it.properties.address)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

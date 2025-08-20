@@ -24,6 +24,7 @@ class PharmacyViewModel : ViewModel() {
 
     object PharmInfoData {
         var pharmInfoGson: PharmacyInfo? = null
+        var pharmFilterData: Feature? = null
     }
 
     fun upDataPharmacy() {

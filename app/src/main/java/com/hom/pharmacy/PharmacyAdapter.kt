@@ -1,6 +1,7 @@
 package com.hom.pharmacy
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,11 @@ class PharmacyAdapter(val _context: Context, val filterData: List<Feature>) :
         holder.pharmName.setText(data.properties.name)
         holder.pharmAdult.setText(data.properties.mask_adult.toString())
         holder.pharmChild.setText(data.properties.mask_child.toString())
+        holder.itemView.setOnClickListener {
+            PharmacyViewModel.PharmInfoData.pharmFilterData = data
+            Intent(_context, PharmacyActivity::class.java)
+                .also { _context.startActivity(it) }
+        }
     }
 
 }
