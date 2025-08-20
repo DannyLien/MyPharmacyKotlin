@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -124,6 +126,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val menuId = item.itemId
+        when (menuId) {
+            R.id.action_exit -> {
+                finish()
+                true
+            }
+
+            R.id.action_maps -> {
+                Intent(this, MapsActivity::class.java)
+                    .also { startActivity(it) }
+                true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
 

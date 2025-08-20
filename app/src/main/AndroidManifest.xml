@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/mask_map_logo_64"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyPharmacyKotlin"
+        android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
