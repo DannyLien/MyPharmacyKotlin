@@ -10,6 +10,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:onClick="setMaps"
         app:cardBackgroundColor="#EFB9CD"
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"

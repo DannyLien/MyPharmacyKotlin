@@ -39,6 +39,7 @@ class PharmacyAdapter(val _context: Context, val filterData: List<Feature>) :
         }
     }
 
+
 }
 
 

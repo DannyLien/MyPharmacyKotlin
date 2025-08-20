@@ -140,6 +140,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.action_maps -> {
+                Log.d(TAG, "onOptionsItemSelected: mask-pharmInfo- $pharmInfo")
                 Intent(this, MapsActivity::class.java)
                     .also { startActivity(it) }
                 true
