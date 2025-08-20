@@ -140,7 +140,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.action_maps -> {
-                Log.d(TAG, "onOptionsItemSelected: mask-pharmInfo- $pharmInfo")
+//                Log.d(TAG, "onOptionsItemSelected: mask-pharmInfo- $pharmInfo")
+                PharmacyViewModel.PharmInfoData.pharmFilterData = null
                 Intent(this, MapsActivity::class.java)
                     .also { startActivity(it) }
                 true

@@ -1,5 +1,6 @@
 package com.hom.pharmacy
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -53,6 +54,11 @@ class PharmacyActivity : AppCompatActivity() {
         }
     }
 
+    fun setMaps(view: View) {
+        Intent(this, MapsActivity::class.java)
+            .also { startActivity(it) }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_pharm_maps, menu)
         return super.onCreateOptionsMenu(menu)
@@ -71,8 +77,6 @@ class PharmacyActivity : AppCompatActivity() {
 
 
 }
-
-
 
 
 
